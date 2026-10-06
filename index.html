@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Đề xuất giải pháp nghiệp vụ Project Ranking trên SaleHub">
+  <title>Project Ranking — Đề xuất Giải pháp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-900:#162655; --primary-800:#1c3d8c; --primary-700:#1953dc;
+      --primary-600:#246bef; --primary-500:#3788fa; --primary-400:#5dabfd;
+      --primary-300:#91c9ff; --primary-200:#beddff; --primary-100:#daebff; --primary-50:#eff7ff;
+      --neutral-900:#0a0b0f; --neutral-800:#313649; --neutral-700:#3e4866;
+      --neutral-600:#4c587d; --neutral-500:#607097; --neutral-400:#808eb0;
+      --neutral-300:#adb6cc; --neutral-200:#e3e6eb; --neutral-100:#ebedf3; --neutral-50:#f6f7f9;
+      --text:#101828; --muted:#667085; --white:#fff; --black:#000;
+      --success:#00a76f; --success-soft:#e8f8f1; --warning:#f59e0b; --warning-soft:#fff7e6;
+      --danger:#fc105c; --danger-soft:#fff0f5; --turquoise:#00ffe0; --yellow:#ffc700;
+      --radius-sm:8px; --radius-md:12px; --radius-lg:20px;
+      --shadow:0 14px 36px rgba(22,38,85,.08);
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--neutral-50);color:var(--text);font-family:"Plus Jakarta Sans",Arial,sans-serif;line-height:1.55}
+    a{color:inherit} button{font:inherit}.shell{min-height:100vh}.topbar{position:sticky;top:0;z-index:50;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(255,255,255,.96);border-top:5px solid #033efe;border-bottom:1px solid var(--neutral-200);backdrop-filter:blur(16px)}
+    .brand{display:flex;align-items:center}.brand-title{font-size:12px;font-weight:700;color:var(--primary-900)}.top-actions{display:flex;align-items:center;gap:10px}.tag{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border-radius:999px;background:var(--primary-50);color:var(--primary-700);font-size:11px;font-weight:700}.dot{width:7px;height:7px;border-radius:50%;background:currentColor}.action{height:38px;padding:0 16px;border:1px solid var(--neutral-200);border-radius:8px;background:var(--white);color:var(--primary-900);font-weight:700;cursor:pointer}.action.primary{border-color:var(--primary-600);background:var(--primary-600);color:white}
+    .layout{display:grid;grid-template-columns:272px minmax(0,1fr);max-width:1600px;margin:auto}.nav{position:sticky;top:72px;height:calc(100vh - 72px);overflow:auto;padding:30px 22px 50px;background:white;border-right:1px solid var(--neutral-200)}.nav-label{margin:0 10px 12px;font-size:10px;font-weight:800;letter-spacing:.12em;color:var(--neutral-400)}.nav a{display:flex;gap:10px;align-items:center;margin:3px 0;padding:10px 12px;text-decoration:none;border-radius:8px;color:var(--neutral-500);font-size:12px;font-weight:600}.nav a:hover,.nav a.active{background:var(--primary-50);color:var(--primary-700)}.nav-index{width:22px;color:var(--neutral-300);font-size:10px}.nav a.active .nav-index{color:var(--primary-500)}
+    main{min-width:0;padding:32px 42px 90px}.page{max-width:1240px;margin:auto}.hero{position:relative;overflow:hidden;min-height:590px;padding:74px 72px;border-radius:24px;background:linear-gradient(140deg,#00183f 0%,#0b1a87 38%,#1c6fd8 100%);color:white}.hero:before{content:"";position:absolute;width:520px;height:520px;right:-180px;top:-210px;border:1px solid rgba(255,255,255,.16);border-radius:50%}.hero:after{content:"";position:absolute;width:330px;height:330px;right:25px;bottom:-210px;border:80px solid rgba(0,255,224,.11);border-radius:50%}.hero-content{position:relative;z-index:2;max-width:750px}.eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:22px;font-size:11px;font-weight:700;letter-spacing:.13em;color:var(--primary-200)}.eyebrow:before{content:"";width:30px;height:2px;background:var(--turquoise)}.hero h1{margin:0;font-size:62px;line-height:1.05;letter-spacing:-.045em}.hero h1 span{color:var(--turquoise)}.hero p{max-width:700px;margin:24px 0 0;font-size:18px;color:#dce8ff}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}.hero-chip{padding:9px 13px;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:rgba(255,255,255,.08);font-size:11px;font-weight:700}.hero-mascot{position:absolute;z-index:1;right:38px;bottom:-78px;width:360px;filter:drop-shadow(0 20px 28px rgba(0,0,0,.28))}.hero-foot{position:absolute;left:72px;bottom:36px;font-size:11px;color:#b9cae7}
+    .section{margin-top:28px;padding:38px 40px;background:white;border:1px solid var(--neutral-200);border-radius:16px}.section-head{display:flex;gap:22px;justify-content:space-between;align-items:flex-start;margin-bottom:26px}.section-title-wrap{max-width:850px}.kicker{font-size:10px;font-weight:800;letter-spacing:.12em;color:var(--primary-600);text-transform:uppercase}.section h2{margin:7px 0 9px;font-size:32px;line-height:1.25;letter-spacing:-.025em;color:var(--text)}.lead{margin:0;color:var(--muted);font-size:15px}.section-badge{flex:0 0 auto;padding:7px 11px;border-radius:999px;background:var(--primary-50);color:var(--primary-700);font-size:10px;font-weight:800}.grid{display:grid;gap:16px}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .purpose{display:grid;grid-template-columns:1.35fr .65fr;gap:18px}.purpose-main{padding:28px;border-radius:16px;background:var(--primary-900);color:white}.purpose-main h3{margin:0 0 10px;font-size:24px}.purpose-main p{margin:0;color:#ced9f3}.purpose-side{padding:24px;border-radius:16px;background:var(--primary-50);border:1px solid var(--primary-100)}.purpose-side strong{display:block;color:var(--primary-800);font-size:34px}.purpose-side span{font-size:12px;color:var(--neutral-500)}
+    .scope-statement{display:grid;grid-template-columns:150px 1fr;gap:24px;padding:25px;border-radius:14px;background:var(--primary-50);border:1px solid var(--primary-200)}.scope-statement .label{font-size:11px;font-weight:800;color:var(--primary-700);letter-spacing:.1em}.scope-statement p{margin:0;color:var(--primary-900);font-size:20px;font-weight:700}.scope-statement small{display:block;margin-top:8px;color:var(--neutral-500)}.scope-list{margin-top:20px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px}.scope-item{display:grid;grid-template-columns:32px 1fr;gap:11px;padding:15px 0;border-bottom:1px solid var(--neutral-200)}.scope-number{width:28px;height:28px;display:inline-block;flex:0 0 28px;padding:0;border-radius:8px;background:#246bef;color:#fff!important;font-size:10px;font-weight:800;line-height:28px;text-align:center;vertical-align:middle;font-variant-numeric:tabular-nums}.scope-item strong{display:block;margin-bottom:3px;font-size:13px}.scope-item span{display:block;color:var(--muted);font-size:12px}
+    .card{padding:22px;border:1px solid var(--neutral-200);border-radius:12px;background:white}.card.top{border-top:4px solid var(--primary-600)}.card.cyan{border-top-color:var(--turquoise)}.card.green{border-top-color:var(--success)}.card.yellow{border-top-color:var(--yellow)}.card.red{border-top-color:var(--danger)}.card h3,.card h4{margin:0 0 8px;color:var(--text)}.card h3{font-size:17px}.card h4{font-size:14px}.card p{margin:0;color:var(--muted);font-size:12px}.card ul{margin:10px 0 0;padding-left:18px}.card li{margin:7px 0;font-size:12px}
+    .flow{display:grid;grid-template-columns:repeat(6,minmax(145px,1fr));gap:10px;overflow:auto}.flow-step{min-height:220px;padding:18px 16px;border:1px solid var(--neutral-200);border-radius:12px;background:white}.flow-step .no{display:grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--primary-600);color:white;font-size:11px;font-weight:800}.flow-step h3{margin:24px 0 9px;font-size:14px}.flow-step p{margin:0;color:var(--muted);font-size:11px}.flow-step.emphasis{background:var(--primary-900);color:white;border-color:var(--primary-900)}.flow-step.emphasis h3{color:white}.flow-step.emphasis p{color:#d4def3}.flow-step.emphasis .no{background:var(--turquoise);color:#00183f}
+    .callout{display:grid;grid-template-columns:5px 1fr;gap:16px;margin-top:20px;padding:18px 20px;border-radius:10px;background:var(--primary-50)}.callout:before{content:"";border-radius:999px;background:var(--primary-600)}.callout.warning{background:var(--warning-soft)}.callout.warning:before{background:var(--warning)}.callout.success{background:var(--success-soft)}.callout.success:before{background:var(--success)}.callout p{margin:0;font-size:12px}.callout strong{color:var(--primary-900)}
+    table{width:100%;border-collapse:separate;border-spacing:0;font-size:11px;border:1px solid var(--neutral-200);border-radius:12px;overflow:hidden}th{padding:13px;text-align:left;background:var(--primary-900);color:white;font-size:10px}td{padding:13px;border-top:1px solid var(--neutral-200);vertical-align:top}tr:nth-child(even) td{background:var(--neutral-50)}.table-wrap{overflow:auto}
+    .formula{margin-top:18px;padding:20px;border-radius:12px;text-align:center;background:var(--primary-900);color:white;font-size:17px;font-weight:800}.rank-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:16px}.rank{min-width:170px;padding:10px 15px;border-radius:999px;text-align:center;font-size:12px;font-weight:800;border:1px solid}.rank.a{color:var(--danger);background:var(--danger-soft)}.rank.b{color:#a86400;background:var(--warning-soft)}.rank.c{color:var(--success);background:var(--success-soft)}
+    .lanes{display:grid;gap:14px}.lane{display:grid;grid-template-columns:110px repeat(5,minmax(110px,1fr));gap:9px;align-items:center}.lane-title{font-size:12px;font-weight:800;color:var(--primary-900)}.node{padding:12px 8px;border:1px solid var(--neutral-200);border-radius:8px;text-align:center;background:white;font-size:10px;font-weight:700}.node.system{border-color:var(--primary-400)}.node.dl{border-color:var(--primary-600);color:var(--primary-700)}.node.bod{border-color:var(--warning);color:#9a6200;background:var(--warning-soft)}.node.done{border-color:var(--success);color:var(--success);background:var(--success-soft)}.node.na{border-style:dashed;color:var(--neutral-400)}
+    .mascot-note{display:grid;grid-template-columns:170px 1fr;align-items:center;gap:20px;margin-top:22px;padding:18px 25px;border-radius:16px;background:var(--primary-900);color:white;overflow:hidden}.mascot-note img{width:170px;margin:-46px 0 -50px}.mascot-note h3{margin:0 0 7px;color:white}.mascot-note p{margin:0;color:#d5dff5;font-size:12px}
+    .status{display:inline-flex;padding:5px 8px;border-radius:999px;background:var(--primary-50);color:var(--primary-700);font-size:9px;font-weight:800}.status.pending{background:var(--warning-soft);color:#a86400}.status.done{background:var(--success-soft);color:var(--success)}
+    .sync{display:grid;grid-template-columns:1fr 150px 1fr;gap:18px;align-items:center}.sync-arrow{text-align:center;color:var(--primary-500);font-size:12px;font-weight:800}.sync-arrow b{display:block;font-size:34px;line-height:1}.ux-placement{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:20px}.ux-placement .card{position:relative;padding-top:48px}.ux-step{position:absolute;top:16px;left:20px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:7px;background:var(--primary-600);color:#fff;font-size:10px;font-weight:800;line-height:1}.ux-frame{overflow:hidden;border:1px solid var(--neutral-200);border-radius:14px;background:var(--neutral-50);box-shadow:0 14px 32px rgba(22,38,85,.09)}.ux-frame-head{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:13px 16px;background:white;border-bottom:1px solid var(--neutral-200)}.ux-frame-head strong{font-size:12px;color:var(--primary-900)}.ux-frame-head a{padding:7px 11px;border-radius:7px;background:var(--primary-600);color:#fff;text-decoration:none;font-size:10px;font-weight:800}.ux-frame iframe{display:block;width:100%;height:720px;border:0;background:#f3f4f9}.ux-note{margin-top:12px;color:var(--muted);font-size:11px}.out{border-color:#ffd0df}.out .kicker{color:var(--danger)}.out-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.out-item{padding:18px;border-radius:10px;background:var(--danger-soft);border:1px solid #ffd0df}.out-item strong{display:block;margin-bottom:5px;color:#b60a45;font-size:12px}.out-item span{color:var(--muted);font-size:11px}.footer{margin-top:28px;padding:46px;border-radius:20px;background:var(--primary-900);color:#cbd6ed;text-align:center}.footer strong{display:block;margin-bottom:6px;color:white}.footer small{font-size:10px}
+    @media(max-width:1120px){.layout{grid-template-columns:1fr}.nav{display:none}.g4{grid-template-columns:repeat(2,1fr)}.flow{grid-template-columns:repeat(3,minmax(190px,1fr))}.hero-mascot{opacity:.38}.lane{grid-template-columns:1fr 1fr 1fr}.ux-placement{grid-template-columns:1fr}}
+    @media(max-width:720px){.topbar{padding:0 15px}.brand-title,.brand-divider,.top-actions .tag{display:none}main{padding:14px}.hero{padding:45px 25px 92px;min-height:620px}.hero h1{font-size:42px}.hero-mascot{width:280px;right:-60px}.hero-foot{left:25px}.section{padding:25px 18px}.section-head{display:block}.g2,.g3,.g4,.purpose,.scope-list,.sync,.out-grid{grid-template-columns:1fr}.scope-statement,.mascot-note{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.lane{grid-template-columns:1fr}.mascot-note img{display:none}}
+    @media print{.topbar,.nav,.action{display:none!important}.layout{display:block}main{padding:0}.page{max-width:none}.hero,.section{page-break-inside:avoid;border-radius:0;margin:0 0 10px}.section{page-break-before:always}}
+  </style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <div class="brand"><span class="brand-title">Project Ranking Solution</span></div>
+    <div class="top-actions"><span class="tag"><i class="dot"></i> Business Proposal v2.0</span><button class="action" onclick="document.getElementById('scope').scrollIntoView()">Xem scope</button><button class="action primary" onclick="window.print()">Xuất PDF</button></div>
+  </header>
+  <div class="layout">
+    <aside class="nav">
+      <p class="nav-label">SOLUTION CONTENT</p>
+      <a class="active" href="#purpose"><span class="nav-index">01</span>Mục đích giải pháp</a>
+      <a href="#scope"><span class="nav-index">02</span>Phạm vi triển khai</a>
+      <a href="#principles"><span class="nav-index">03</span>Nguyên tắc Ranking</a>
+      <a href="#flow"><span class="nav-index">04</span>Quy trình TO-BE</a>
+      <a href="#data"><span class="nav-index">05</span>Dữ liệu & công thức</a>
+      <a href="#confirm"><span class="nav-index">06</span>DL Confirmation</a>
+      <a href="#approval"><span class="nav-index">07</span>BOD Approval & Override</a>
+      <a href="#reranking"><span class="nav-index">08</span>Re-ranking</a>
+      <a href="#history"><span class="nav-index">09</span>Trạng thái & lịch sử</a>
+      <a href="#des"><span class="nav-index">10</span>Đồng bộ DES</a>
+      <a href="#uiux"><span class="nav-index">11</span>UI/UX Preview</a>
+      <a href="#out"><span class="nav-index">12</span>Out of Scope</a>
+    </aside>
+    <main><div class="page">
+      <section class="hero">
+        <div class="hero-content">
+          <div class="eyebrow">TECHVIFY BUSINESS SOLUTION</div>
+          <h1>Project Ranking<br><span>trên SaleHub</span></h1>
+          <p>Thiết lập một quy trình thống nhất để hệ thống đề xuất Rank, Delivery xác nhận, BOD ra quyết định và Rank luôn được duy trì đúng trong suốt vòng đời Project.</p>
+          <div class="hero-actions"><span class="hero-chip">AUTO RANK</span><span class="hero-chip">DL CONFIRM</span><span class="hero-chip">BOD DECISION</span><span class="hero-chip">RE-RANKING</span><span class="hero-chip">DES SYNC</span></div>
+        </div>
+        <img class="hero-mascot" src="assets/img/project-ranking/mascot-ranking-guide.png" alt="Techvify Mascot">
+        <div class="hero-foot">Đề xuất độc lập · PM Draft + Backlog + Q&amp;A + Guideline + PQA Confirmation · 10/2026</div>
+      </section>
+
+      <section id="purpose" class="section">
+        <div class="section-head"><div class="section-title-wrap"><div class="kicker">01 · Solution purpose</div><h2>Tại sao cần giải pháp Project Ranking?</h2><p class="lead">Giải pháp không chỉ tạo thêm một nhãn A/B/C. Nó chuẩn hóa cách công ty xác định mức độ quan trọng của Project, quy trách nhiệm cho người xác nhận và giữ cho kết quả luôn có thể giải thích được.</p></div><span class="section-badge">BUSINESS FIRST</span></div>
+        <div class="purpose">
+          <div class="purpose-main"><h3>Business outcome cần đạt</h3><p>Cùng một bộ dữ liệu phải cho cùng một kết quả; Rank phải được đúng người confirm/approve; mọi lần thay đổi phải có lý do và lịch sử; DES luôn nhận đúng Rank chính thức từ một nguồn duy nhất.</p></div>
+          <div class="purpose-side"><strong>A / B / C</strong><span>Ba mức phân loại để công ty nhận diện quy mô, độ phức tạp, chiến lược và giá trị khách hàng của từng Project.</span></div>
+        </div>
+        <div class="grid g3" style="margin-top:18px">
+          <div class="card top"><h3>Thay thế đánh giá cảm tính</h3><p>Bốn nhóm điểm, trọng số và ngưỡng Rank được áp dụng nhất quán.</p></div>
+          <div class="card top cyan"><h3>Xác lập accountability</h3><p>Hệ thống đề xuất; DL xác nhận; BOD quyết định Rank A/B và Override.</p></div>
+          <div class="card top green"><h3>Duy trì tính đúng</h3><p>Re-ranking, review sáu tháng và version history giữ Rank không bị lỗi thời.</p></div>
+        </div>
+      </section>
+
+      <section id="scope" class="section">
+        <div class="section-head"><div class="section-title-wrap"><div class="kicker">02 · Scope</div><h2>Phạm vi giải pháp trong release này</h2><p class="lead">Release này triển khai đầy đủ vòng đời Ranking trên SaleHub, từ dự đoán đến confirm, phê duyệt, điều chỉnh, đánh giá lại và đồng bộ.</p></div><span class="section-badge">PQA CONFIRMED</span></div>
+        <div class="scope-statement"><div class="label">SCOPE STATEMENT</div><div><p>Auto Ranking → DL Review &amp; Confirm → BOD Approval/Override cho Rank A/B → Re-ranking → Current Effective Rank → DES Read-only.</p><small>Kết quả: mỗi Project có một Rank chính thức đáng tin cậy và nhiều Ranking Version có thể truy vết.</small></div></div>
+        <div class="scope-list">
+          <div class="scope-item"><span class="scope-number">01</span><div><strong>Automated Ranking</strong><span>Tự động chấm bốn nhóm và đề xuất Rank từ dữ liệu hiện có.</span></div></div>
+          <div class="scope-item"><span class="scope-number">02</span><div><strong>DL Confirmation</strong><span>DL kiểm tra, correct và confirm mọi Rank.</span></div></div>
+          <div class="scope-item"><span class="scope-number">03</span><div><strong>BOD Approval</strong><span>Rank A/B chuyển BOD; Rank C kết thúc tại DL.</span></div></div>
+          <div class="scope-item"><span class="scope-number">04</span><div><strong>BOD Override</strong><span>Final Rank có thể khác kết quả tính toán, nhưng lịch sử gốc luôn được giữ.</span></div></div>
+          <div class="scope-item"><span class="scope-number">05</span><div><strong>Re-ranking</strong><span>Tạo phiên bản mới khi dữ liệu thay đổi đủ điều kiện.</span></div></div>
+          <div class="scope-item"><span class="scope-number">06</span><div><strong>Review 6 tháng</strong><span>Nhắc DL rà soát định kỳ kể từ lần Ranking gần nhất.</span></div></div>
+          <div class="scope-item"><span class="scope-number">07</span><div><strong>Audit Trail</strong><span>Lưu snapshot, điểm, quyết định, người thao tác và lý do.</span></div></div>
+          <div class="scope-item"><span class="scope-number">08</span><div><strong>DES Sync</strong><span>Đồng bộ một chiều Current Effective Rank sang DES.</span></div></div>
+        </div>
+      </section>
+
+      <section id="principles" class="section">
+        <div class="section-head"><div class="section-title-wrap"><div class="kicker">03 · Ranking model</div><h2>Ba lớp Rank — ba mục đích khác nhau</h2><p class="lead">Phân biệt rõ ba lớp giúp không biến dự báo trên Deal thành quyết định chính thức của Project.</p></div></div>
+        <div class="grid g3">
+          <div class="card top"><h3>Reference Rank</h3><p><strong>Dự báo trên Deal.</strong> Dùng để nhìn sớm cơ hội; dữ liệu còn là forecast; không có hiệu lực và không sync DES.</p></div>
+          <div class="card top cyan"><h3>Suggested Rank</h3><p><strong>Kết quả hệ thống đề xuất.</strong> Được tính từ scoring/special case; là đầu vào để DL rà soát.</p></div>
+          <div class="card top green"><h3>Current Effective Rank</h3><p><strong>Rank chính thức.</strong> Rank C sau DL confirm; Rank A/B sau BOD approve/override; được sync DES.</p></div>
+        </div>
+        <div class="callout"><p><strong>Version principle:</strong> một Project chỉ có một Current Effective Rank tại một thời điểm nhưng có nhiều Ranking Version trong lịch sử.</p></div>
+      </section>
+
+      <section id="flow" class="section">
+        <div class="section-head"><div class="section-title-wrap"><div class="kicker">04 · To-be process</div><h2>Quy trình giải pháp đầu-cuối</h2><p class="lead">Luồng được thiết kế quanh ba trách nhiệm: hệ thống tính, DL xác nhận, BOD quyết định.</p></div></div>
+        <div class="flow">
+          <div class="flow-step"><span class="no">01</span><h3>Dự báo trên Deal</h3><p>Sales/AM và Presales cung cấp dữ liệu; hệ thống tính Reference Rank.</p></div>
+          <div class="flow-step"><span class="no">02</span><h3>Tạo Project</h3><p>Tổng hợp Deal đủ điều kiện, Account và PSR để tạo Suggested Rank.</p></div>
+          <div class="flow-step emphasis"><span class="no">03</span><h3>DL Review</h3><p>Đối chiếu dữ liệu, correct thông tin, kiểm tra điểm và Special Case.</p></div>
+          <div class="flow-step emphasis"><span class="no">04</span><h3>DL Confirm</h3><p>Confirm mọi Rank. C có hiệu lực; A/B chuyển BOD.</p></div>
+          <div class="flow-step"><span class="no">05</span><h3>BOD Decision</h3><p>Approve, return hoặc override Rank A/B.</p></div>
+          <div class="flow-step"><span class="no">06</span><h3>Duy trì Rank</h3><p>Re-ranking, review sáu tháng, lịch sử và sync DES.</p></div>
+        </div>
+        <div class="mascot-note"><img src="assets/img/project-ranking/mascot-status-strip.png" alt="Techvify Mascot status"><div><h3>Ranking là một quy trình ra quyết định, không phải một field nhập tay.</h3><p>Mỗi kết quả phải đọc được nguồn dữ liệu, điểm hệ thống, xác nhận của DL, quyết định của BOD và phiên bản có hiệu lực.</p></div></div>
+      </section>
+
+      <section id="data" class="section">
+        <div class="section-head"><div class="section-title-wrap"><div class="kicker">05 · Data & formula</div><h2>Dữ liệu đầu vào và công thức</h2><p class="lead">Dữ liệu trước DO là Forecast; dữ liệu sau hợp đồng/DO trở thành Actual/Baseline. Mỗi Ranking Version lưu snapshot riêng.</p></div></div>
+        <div class="table-wrap"><table><thead><tr><th>Dữ liệu</th><th>Trước DO</th><th>Sau DO / hợp đồng</th><th>Owner</th><th>Business use</th></tr></thead><tbody>
+          <tr><td><strong>Revenue / TCV</strong></td><td>Deal forecast theo Project Type</td><td>Contract / SOW / Deal đủ điều kiện</td><td>AM / Sales</td><td>Scale</td></tr>
+          <tr><td><strong>Peak FTE</strong></td><td>Deal hoặc PSR forecast</td><td>Budget Allocation / DO</td><td>Presales → DL</td><td>Scale</td></tr>
+          <tr><td><strong>Duration</strong></td><td>Deal hoặc PSR forecast</td><td>Contract / DO baseline</td><td>AM/Presales → DL</td><td>Scale</td></tr>
+          <tr><td><strong>Complexity</strong></td><td>PSR</td><td>PSR / dữ liệu DL correct</td><td>Presales / DL</td><td>Complexity</td></tr>
+          <tr><td><strong>Strategic Value</strong></td><td>Deal assessment</td><td>AM/DL xác nhận</td><td>Sales / AM</td><td>Strategic</td></tr>
+          <tr><td><strong>Customer Rank</strong></td><td colspan="2">Account Value Tier hiện hành</td><td>AM / CRM</td><td>Customer Rank</td></tr>
+        </tbody></table></div>
+        <div class="grid g2" style="margin-top:18px">
+          <div class="card top"><h4>Project-based / Fixed Price</h4><p><strong>Contracted TCV hoặc Signed SOW Value.</strong></p></div>
+          <div class="card top cyan"><h4>ODC / Recurring</h4><p><strong>MRR × Forecast Duration.</strong> Mặc định 12 tháng nếu chưa xác nhận duration.</p></div>
+          <div class="card top green"><h4>Staff Augmentation</h4><p><strong>Monthly Rate × Billable FTE × Forecast Duration.</strong></p></div>
+          <div class="card top yellow"><h4>Internal / R&amp;D</h4><p><strong>Revenue không áp dụng.</strong> Scale dựa trên Peak FTE và Duration.</p></div>
+        </div>
+        <div class="grid g4" style="margin-top:18px"><div class="card"><h4>Scale · 30%</h4><p>TCV, Peak FTE, Duration.</p></div><div class="card"><h4>Complexity · 30%</h4><p>Technical, Deadline, Security.</p></div><div class="card"><h4>Strategic · 20%</h4><p>Alignment, Potential &amp; Brand.</p></div><div class="card"><h4>Customer · 20%</h4><p>Account Value Tier.</p></div></div>
+        <div class="formula">Total Score = Scale×0.3 + Complexity×0.3 + Strategic×0.2 + Customer Rank×0.2</div>
+        <div class="rank-row"><span class="rank a">RANK A · &gt; 3.7</span><span class="rank b">RANK B · 2.5–3.7</span><span class="rank c">RANK C · &lt; 2.5</span></div>
+        <div class="callout"><p><strong>Group Score:</strong> nếu các tiêu chí trong một Group có mức điểm khác nhau, lấy điểm cao nhất. Mapping Rank dựa trên Total Score chưa làm tròn.</p></div>
+      </section>
+
+      <section id="confirm" class="section">
+        <div class="section-head"><div class="section-title-wrap"><div class="kicker">06 · DL confirmation</div><h2>DL là điểm kiểm soát bắt buộc</h2><p class="lead">Tool tự động đưa ra Rank dự đoán. DL xác nhận dữ liệu và điểm có đúng với thực tế Delivery không trước khi Rank có hiệu lực hoặc trình BOD.</p></div></div>
+        <div class="grid g2"><div class="card top"><h3>DL thực hiện</h3><ul><li>Kiểm tra dữ liệu nguồn và snapshot.</li><li>Đối chiếu điểm từng tiêu chí/Group.</li><li>Correct dữ liệu chưa đúng.</li><li>Nhập lý do cho thay đổi ảnh hưởng Rank.</li><li>Xử lý Special Case suggestion.</li><li>Confirm hồ sơ.</li></ul></div><div class="card top green"><h3>Kết quả</h3><ul><li><strong>Rank C:</strong> trở thành Effective.</li><li><strong>Rank A/B:</strong> chuyển Pending BOD Approval.</li><li>Lưu DL Confirmed Rank, người và thời gian confirm.</li><li>Lưu toàn bộ dữ liệu correct và lý do.</li></ul></div></div>
+        <div class="callout warning"><p><strong>Accountability:</strong> DL chịu trách nhiệm tính đúng của hồ sơ; BOD là người ra quyết định cuối đối với Rank A/B.</p></div>
+      </section>
+
+      <section id="approval" class="section">
+        <div class="section-head"><div class="section-title-wrap"><div class="kicker">07 · Approval & override</div><h2>Approval flow đã chốt với PQA</h2></div><span class="section-badge">C: DL · A/B: BOD</span></div>
+        <div class="lanes"><div class="lane"><span class="lane-title">RANK C</span><span class="node system">System Proposed</span><span class="node dl">DL Review</span><span class="node dl">DL Confirm</span><span class="node na">Không qua BOD</span><span class="node done">Effective</span></div><div class="lane"><span class="lane-title">RANK A / B</span><span class="node system">System Proposed</span><span class="node dl">DL Review</span><span class="node dl">DL Confirm</span><span class="node bod">BOD Decision</span><span class="node done">Effective</span></div></div>
+        <div class="grid g3" style="margin-top:22px"><div class="card top green"><h3>Approve</h3><p>Final Rank trở thành Current Effective Rank.</p></div><div class="card top yellow"><h3>Return</h3><p>Quay về DL Review kèm comment để correct và confirm lại.</p></div><div class="card top red"><h3>Override</h3><p>BOD chọn Final Rank khác đề xuất; reason bắt buộc.</p></div></div>
+        <div class="formula">Calculated Rank ≠ Final Rank · Không ghi đè lịch sử · Override Reason bắt buộc</div>
+        <div class="callout"><p><strong>HOD:</strong> guideline có role HOD nhưng chưa có PIC chính thức; HOD không nằm trong approval routing phase hiện tại.</p></div>
+      </section>
+
+      <section id="reranking" class="section">
+        <div class="section-head"><div class="section-title-wrap"><div class="kicker">08 · Re-ranking</div><h2>Giữ Rank luôn đúng theo Project hiện tại</h2><p class="lead">Không re-rank vì mọi thay đổi nhỏ. Chỉ tạo phiên bản mới khi thay đổi đạt điều kiện nghiệp vụ hoặc có yêu cầu thủ công hợp lệ.</p></div></div>
+        <div class="grid g4"><div class="card top"><h4>TCV</h4><p>Lệch &gt;20% so với baseline.</p></div><div class="card top"><h4>Peak FTE</h4><p>Lệch &gt;20% so với baseline.</p></div><div class="card top cyan"><h4>Scope</h4><p>DL xác nhận thay đổi đáng kể.</p></div><div class="card top green"><h4>Customer Rank</h4><p>Account Value Tier thay đổi.</p></div><div class="card top yellow"><h4>Contract</h4><p>Chuyển Forecast sang Actual.</p></div><div class="card top red"><h4>Periodic</h4><p>Đủ sáu tháng từ lần gần nhất.</p></div><div class="card top"><h4>Manual</h4><p>DL/BOD yêu cầu kèm lý do.</p></div></div>
+        <div class="grid g3" style="margin-top:18px"><div class="card"><h3>1 · Trigger</h3><p>Tạo Ranking Version mới, lưu reason, baseline và thời gian.</p></div><div class="card"><h3>2 · Pending</h3><p>Project tiếp tục chạy; hiển thị Last Effective Rank.</p></div><div class="card"><h3>3 · Complete</h3><p>C dừng tại DL; A/B qua BOD; sync DES sau khi Effective.</p></div></div>
+        <div class="callout success"><p><strong>PQA confirmed:</strong> Re-ranking Pending chỉ là thông tin; không block Project, DO, invoice, delivery hoặc resource operation.</p></div>
+      </section>
+
+      <section id="history" class="section">
+        <div class="section-head"><div class="section-title-wrap"><div class="kicker">09 · Status & audit</div><h2>Lifecycle và dữ liệu lịch sử</h2></div></div>
+        <div class="table-wrap"><table><thead><tr><th>Trạng thái</th><th>Ý nghĩa</th><th>Áp dụng</th></tr></thead><tbody><tr><td><span class="status">Provisional</span></td><td>Hệ thống vừa tạo Suggested Rank.</td><td>Mọi Rank</td></tr><tr><td><span class="status">DL Review</span></td><td>DL đang rà soát hoặc hồ sơ bị trả lại.</td><td>Mọi Rank</td></tr><tr><td><span class="status pending">Pending BOD Approval</span></td><td>DL đã confirm, chờ BOD.</td><td>Rank A/B</td></tr><tr><td><span class="status done">Effective</span></td><td>Rank hiện hành chính thức.</td><td>Current Rank</td></tr><tr><td><span class="status pending">Re-ranking Pending</span></td><td>Đang xử lý phiên bản thay thế, không block.</td><td>Active Project</td></tr><tr><td><span class="status">Superseded</span></td><td>Phiên bản cũ đã được thay thế.</td><td>History</td></tr></tbody></table></div>
+        <div class="grid g2" style="margin-top:18px"><div class="card"><h3>Mỗi version lưu</h3><p>Input snapshot, điểm từng tiêu chí, Group Score, Total Score, Calculated Rank, DL Confirmed Rank, Final Rank.</p></div><div class="card"><h3>Audit metadata</h3><p>Special Case, Override, trigger, reason, người thao tác, approver, comment, thời gian và trạng thái sync.</p></div></div>
+      </section>
+
+      <section id="des" class="section">
+        <div class="section-head"><div class="section-title-wrap"><div class="kicker">10 · DES integration</div><h2>Một nguồn xử lý — một chiều hiển thị</h2></div></div>
+        <div class="sync"><div class="card top"><h3>SaleHub / CRM</h3><ul><li>Tính Rank.</li><li>DL Confirm.</li><li>BOD Approval/Override.</li><li>Re-ranking.</li><li>Version history.</li></ul></div><div class="sync-arrow"><b>→</b>ONE-WAY<br>READ-ONLY</div><div class="card top cyan"><h3>DES</h3><ul><li>Current Effective Rank.</li><li>Ranking Status.</li><li>Ngày cập nhật gần nhất.</li><li>Không tính/sửa/confirm/approve.</li><li>Không gửi ngược dữ liệu.</li></ul></div></div>
+      </section>
+
+      <section id="uiux" class="section">
+        <div class="section-head"><div class="section-title-wrap"><div class="kicker">11 · UI/UX proposal</div><h2>Project Ranking sẽ xuất hiện thế nào trên SaleHub CRM?</h2><p class="lead">Phương án ưu tiên tái sử dụng cấu trúc Detail, tab underline, dashboard card, scoring table và status badge đang có trong CRM để người dùng không phải học một giao diện hoàn toàn mới.</p></div><span class="section-badge">CONCEPT PREVIEW</span></div>
+        <div class="ux-placement">
+          <div class="card top"><span class="ux-step">01</span><h3>Deal Detail · Left panel</h3><p>Giữ nguyên hồ sơ Deal và dữ liệu thương mại hiện có. Reference Rank được tạo từ Deal/PSR/Company nhưng không biến thành field nhập tay ở cột trái.</p></div>
+          <div class="card top cyan"><span class="ux-step">02</span><h3>Center · Project Ranking tab</h3><p>Không gian thao tác chính: xem snapshot nguồn, breakdown bốn nhóm, DL review/confirm và BOD approve/override ngay trong Detail.</p></div>
+          <div class="card top green"><span class="ux-step">03</span><h3>Right panel · Context checklist</h3><p>Giữ Company, Contacts và bổ sung checklist trạng thái dữ liệu/approval để người review biết hồ sơ còn thiếu bước nào.</p></div>
+        </div>
+        <div class="callout warning"><p><strong>Nguyên tắc UX:</strong> Rank không được thiết kế như một field nhập tay. Màn hình phải luôn phân biệt Calculated Rank, DL Confirmed Rank, Final Rank và Current Effective Rank.</p></div>
+        <div class="ux-frame" style="margin-top:20px">
+          <div class="ux-frame-head"><strong>CRM-style UI mockup · Merge trực tiếp vào Deal Detail 3 cột</strong><a href="pages/crm-project-ranking-mockup.html" target="_blank" rel="noopener">Mở toàn màn hình ↗</a></div>
+          <iframe src="pages/crm-project-ranking-mockup.html" title="SaleHub CRM Project Ranking UI/UX Preview" loading="lazy"></iframe>
+        </div>
+        <p class="ux-note">Đây là concept để xác nhận placement, hierarchy và interaction với Sale/PQA/Delivery; chưa phải UI baseline cuối cho development.</p>
+      </section>
+
+      <section id="out" class="section out">
+        <div class="section-head"><div class="section-title-wrap"><div class="kicker">12 · Out of scope</div><h2>Ngoài phạm vi triển khai đợt này</h2><p class="lead">Các chính sách vẫn có thể được vận hành theo guideline DOCX, nhưng hệ thống chưa tự động hóa hoặc kiểm soát trong release này.</p></div></div>
+        <div class="out-grid"><div class="out-item"><strong>Governance Package</strong><span>Không cấu hình cadence meeting/report/audit, Steering hoặc artifact theo Rank.</span></div><div class="out-item"><strong>Governance Gate</strong><span>Không block Kick-off, DO, invoice, delivery, resource hoặc milestone.</span></div><div class="out-item"><strong>PM/PQA Capability</strong><span>Không kiểm tra level, chứng chỉ hoặc năng lực theo Rank.</span></div><div class="out-item"><strong>Senior Ratio &amp; Buffer</strong><span>Không tính tỷ lệ Senior, resource buffer hoặc exception approval.</span></div><div class="out-item"><strong>HOD Approval</strong><span>Không đưa HOD vào workflow do chưa có PIC chính thức.</span></div><div class="out-item"><strong>Delivery Governance Automation</strong><span>Rank chưa tự kích hoạt SLA, reporting, audit hoặc supervision trên DES.</span></div></div>
+        <div class="callout warning"><p><strong>Future dependency:</strong> Current Effective Rank sẽ là đầu vào cho Governance Package theo guideline khi công ty triển khai phase Governance.</p></div>
+      </section>
+
+      <footer class="footer"><strong>TECHVIFY · PROJECT RANKING SOLUTION</strong><small>Designed with My Techvify Design System · Plus Jakarta Sans · Primary #246BEF · Mascot asset from Figma</small></footer>
+    </div></main>
+  </div>
+</div>
+<script>
+  const links=[...document.querySelectorAll('.nav a')];
+  const sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+entry.target.id));}})},{rootMargin:'-20% 0px -70% 0px'});
+  sections.forEach(section=>observer.observe(section));
+</script>
+</body>
+</html>
