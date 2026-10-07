@@ -74,7 +74,7 @@
           <p>Thiết lập một quy trình thống nhất để hệ thống đề xuất Rank, Delivery xác nhận, BOD ra quyết định và Rank luôn được duy trì đúng trong suốt vòng đời Project.</p>
           <div class="hero-actions"><span class="hero-chip">AUTO RANK</span><span class="hero-chip">DL CONFIRM</span><span class="hero-chip">BOD DECISION</span><span class="hero-chip">RE-RANKING</span><span class="hero-chip">DES SYNC</span></div>
         </div>
-        <img class="hero-mascot" src="assets/img/project-ranking/mascot-ranking-guide.png" alt="Techvify Mascot">
+        <img class="hero-mascot" src="../assets/img/project-ranking/mascot-ranking-guide.png" alt="Techvify Mascot">
         <div class="hero-foot">Đề xuất độc lập · PM Draft + Backlog + Q&amp;A + Guideline + PQA Confirmation · 10/2026</div>
       </section>
 
@@ -113,29 +113,31 @@
           <div class="card top cyan"><h3>Suggested Rank</h3><p><strong>Kết quả hệ thống đề xuất.</strong> Được tính từ scoring/special case; là đầu vào để DL rà soát.</p></div>
           <div class="card top green"><h3>Current Effective Rank</h3><p><strong>Rank chính thức.</strong> Rank C sau DL confirm; Rank A/B sau BOD approve/override; được sync DES.</p></div>
         </div>
-        <div class="callout"><p><strong>Version principle:</strong> một Project chỉ có một Current Effective Rank tại một thời điểm nhưng có nhiều Ranking Version trong lịch sử.</p></div>
+        <div class="callout"><p><strong>Relationship principle:</strong> một Project có thể gắn một hoặc nhiều Deal. Reference Rank thuộc từng Deal; Suggested Rank và Current Effective Rank thuộc Project. Hệ thống phải tính lại Project Rank từ toàn bộ Eligible Linked Deals, không copy Rank của một Deal bất kỳ.</p></div>
+        <div class="callout success"><p><strong>Version principle:</strong> một Project chỉ có một Current Effective Rank tại một thời điểm nhưng có nhiều Ranking Version trong lịch sử. Mỗi version lưu cả danh sách Linked Deals và trạng thái Eligible/Excluded tại thời điểm snapshot.</p></div>
       </section>
 
       <section id="flow" class="section">
         <div class="section-head"><div class="section-title-wrap"><div class="kicker">04 · To-be process</div><h2>Quy trình giải pháp đầu-cuối</h2><p class="lead">Luồng được thiết kế quanh ba trách nhiệm: hệ thống tính, DL xác nhận, BOD quyết định.</p></div></div>
         <div class="flow">
           <div class="flow-step"><span class="no">01</span><h3>Dự báo trên Deal</h3><p>Sales/AM và Presales cung cấp dữ liệu; hệ thống tính Reference Rank.</p></div>
-          <div class="flow-step"><span class="no">02</span><h3>Tạo Project</h3><p>Tổng hợp Deal đủ điều kiện, Account và PSR để tạo Suggested Rank.</p></div>
+          <div class="flow-step"><span class="no">02</span><h3>Tạo Project &amp; link Deal</h3><p>AM gắn một hoặc nhiều Deal. Hệ thống xác định Eligible Deals, tổng hợp Account/PSR và tính lại Suggested Project Rank.</p></div>
           <div class="flow-step emphasis"><span class="no">03</span><h3>DL Review</h3><p>Đối chiếu dữ liệu, correct thông tin, kiểm tra điểm và Special Case.</p></div>
           <div class="flow-step emphasis"><span class="no">04</span><h3>DL Confirm</h3><p>Confirm mọi Rank. C có hiệu lực; A/B chuyển BOD.</p></div>
           <div class="flow-step"><span class="no">05</span><h3>BOD Decision</h3><p>Approve, return hoặc override Rank A/B.</p></div>
           <div class="flow-step"><span class="no">06</span><h3>Duy trì Rank</h3><p>Re-ranking, review sáu tháng, lịch sử và sync DES.</p></div>
         </div>
-        <div class="mascot-note"><img src="assets/img/project-ranking/mascot-status-strip.png" alt="Techvify Mascot status"><div><h3>Ranking là một quy trình ra quyết định, không phải một field nhập tay.</h3><p>Mỗi kết quả phải đọc được nguồn dữ liệu, điểm hệ thống, xác nhận của DL, quyết định của BOD và phiên bản có hiệu lực.</p></div></div>
+        <div class="callout"><p><strong>Eligible Deal baseline:</strong> chỉ Deal thuộc Project và Primary Company, đạt Won/Contracted hoặc được AM xác nhận thuộc scope mới tham gia snapshot. Lost/Cancelled bị loại; Renewal, Change Request và Deal thay thế phải có relationship type để chống cộng trùng TCV.</p></div>
+        <div class="mascot-note"><img src="../assets/img/project-ranking/mascot-status-strip.png" alt="Techvify Mascot status"><div><h3>Ranking là quyết định ở cấp Project, không phải Rank của một Deal.</h3><p>Mỗi kết quả phải truy được tập Linked Deals, dữ liệu tổng hợp, điểm hệ thống, xác nhận của DL, quyết định của BOD và phiên bản có hiệu lực.</p></div></div>
       </section>
 
       <section id="data" class="section">
         <div class="section-head"><div class="section-title-wrap"><div class="kicker">05 · Field-level data &amp; formula</div><h2>Mỗi điểm lấy từ field nào trên SaleHub?</h2><p class="lead">Dữ liệu tiếp tục nằm tại module có owner tự nhiên. Project Ranking chỉ tổng hợp snapshot, quy đổi điểm và điều phối review/approval — không bắt người dùng nhập lại dữ liệu nguồn.</p></div><span class="section-badge">PQA: MAX ALL GROUPS</span></div>
         <div class="mapping-legend"><span class="map-tag reuse">REUSE · đã có</span><span class="map-tag evidence">EVIDENCE · chỉ tham chiếu</span><span class="map-tag new">NEW · cần bổ sung</span></div>
         <div class="map-group"><div class="map-group-head"><strong>Group 1 · Scale · 30%</strong><span class="map-formula">MAX(TCV, Peak FTE, Duration)</span></div><div class="table-wrap"><table><thead><tr><th>Tiêu chí</th><th>Field / nguồn</th><th>Tình trạng &amp; placement đề xuất</th><th>Data owner</th><th>Ranking xử lý</th></tr></thead><tbody>
-          <tr><td><strong>TCV / Revenue</strong></td><td>Deal Amount, Currency, Project Type; Contract/SOW sau khi ký</td><td><span class="map-tag reuse">REUSE</span> Deal Detail / Contract</td><td>AM / Deal Owner</td><td>Auto quy đổi điểm theo band</td></tr>
-          <tr><td><strong>Peak FTE</strong></td><td>Forecast Peak FTE; Baseline Peak FTE</td><td><span class="map-tag new">NEW</span> PSR Solution Assessment → Project baseline</td><td>TC/PSR Owner → DL</td><td>Read-only snapshot, auto score</td></tr>
-          <tr><td><strong>Duration</strong></td><td>Forecast Project Duration; Contract/Baseline Duration</td><td><span class="map-tag new">NEW</span> PSR forecast → Project/DO baseline</td><td>AM/TC → DL</td><td>Không dùng Duration của activity</td></tr>
+          <tr><td><strong>TCV / Revenue</strong></td><td>Amount, Currency, Contract/SOW của toàn bộ Eligible Linked Deals</td><td><span class="map-tag reuse">REUSE</span> Deal/Contract → Project snapshot</td><td>AM / Deal Owners</td><td>SUM sau quy đổi tiền tệ; loại Deal trùng/thay thế</td></tr>
+          <tr><td><strong>Peak FTE</strong></td><td>Staffing forecast của các PSR/Deal; Baseline Peak FTE</td><td><span class="map-tag new">NEW</span> PSR timeline → Project baseline</td><td>TC/PSR Owners → DL</td><td>MAX tổng FTE active theo timeline; không cộng thẳng peak từng Deal</td></tr>
+          <tr><td><strong>Duration</strong></td><td>Start/End forecast của các Deal; Contract/Baseline Duration</td><td><span class="map-tag new">NEW</span> PSR/Contract → Project baseline</td><td>AM/TC → DL</td><td>MIN Start đến MAX End; không cộng số tháng từng Deal</td></tr>
         </tbody></table></div></div>
         <div class="map-group"><div class="map-group-head"><strong>Group 2 · Complexity · 30%</strong><span class="map-formula">MAX(Technical, Deadline, Security)</span></div><div class="table-wrap"><table><thead><tr><th>Tiêu chí</th><th>Evidence hiện có</th><th>Field scoring đề xuất</th><th>Data owner</th><th>Ranking xử lý</th></tr></thead><tbody>
           <tr><td><strong>Technical Complexity</strong></td><td>PSR flags: AI, Scale, Integration; Opportunity Brief</td><td><span class="map-tag new">NEW</span> Technical Complexity Assessment 1–5 tại PSR</td><td>TC / PSR Owner</td><td>DL review; correct cần reason</td></tr>
@@ -149,7 +151,7 @@
         <div class="map-group"><div class="map-group-head"><strong>Group 4 · Customer Rank · 20%</strong><span class="map-formula">MAX(Customer Rank) = Customer Rank Score</span></div><div class="table-wrap"><table><thead><tr><th>Tiêu chí</th><th>Field / nguồn</th><th>Tình trạng</th><th>Data owner</th><th>Ranking xử lý</th></tr></thead><tbody>
           <tr><td><strong>Customer Rank</strong></td><td>Primary Company · Value Tier / Classification hiện hành</td><td><span class="map-tag reuse">REUSE</span> Company Intelligence</td><td>AM / Company Owner</td><td>Read-only; Potential Tag không thay thế Customer Rank</td></tr>
         </tbody></table></div></div>
-        <div class="data-layers"><div class="data-layer"><b>1 · Source Data</b><p>Deal giữ dữ liệu thương mại; PSR giữ forecast và complexity assessment; Company giữ Customer Rank và strategic evidence; Project/DO giữ baseline thực tế.</p></div><div class="data-layer"><b>2 · Ranking Assessment</b><p>Tab Project Ranking đọc snapshot, hiển thị source/owner, tính điểm từng tiêu chí, áp dụng MAX và cho DL review.</p></div><div class="data-layer"><b>3 · Ranking Version</b><p>Lưu giá trị nguồn, điểm con, Group Score, Total Score, Rank, owner, reviewer, reason và timestamp; không ghi đè version Effective.</p></div></div>
+        <div class="data-layers"><div class="data-layer"><b>1 · Source Data</b><p>Nhiều Deal giữ dữ liệu thương mại; các PSR giữ forecast/complexity; Company giữ Customer Rank; Project/DO giữ baseline thực tế.</p></div><div class="data-layer"><b>2 · Project Aggregation</b><p>Xác định Eligible/Excluded Deals; SUM TCV, tính Peak FTE theo timeline, Duration theo MIN Start–MAX End và tổng hợp evidence cấp Project.</p></div><div class="data-layer"><b>3 · Ranking Version</b><p>Lưu tập Deal snapshot, trạng thái inclusion, giá trị từng Deal, điểm con, Rank, reviewer, reason và timestamp; không ghi đè version Effective.</p></div></div>
         <div class="formula">Group Score = MAX(các tiêu chí con) · Total Score = Scale×0.3 + Complexity×0.3 + Strategic×0.2 + Customer Rank×0.2</div>
         <div class="rank-row"><span class="rank a">RANK A · &gt; 3.7</span><span class="rank b">RANK B · 2.5–3.7</span><span class="rank c">RANK C · &lt; 2.5</span></div>
         <div class="callout warning"><p><strong>Missing data proposal:</strong> không mặc định 0/1; cho Save Draft nhưng block DL Confirm khi tiêu chí bắt buộc còn thiếu. Đây là solution baseline cần Sale/PQA xác nhận.</p></div>
@@ -171,7 +173,7 @@
 
       <section id="reranking" class="section">
         <div class="section-head"><div class="section-title-wrap"><div class="kicker">08 · Re-ranking</div><h2>Giữ Rank luôn đúng theo Project hiện tại</h2><p class="lead">Không re-rank vì mọi thay đổi nhỏ. Chỉ tạo phiên bản mới khi thay đổi đạt điều kiện nghiệp vụ hoặc có yêu cầu thủ công hợp lệ.</p></div></div>
-        <div class="grid g4"><div class="card top"><h4>TCV</h4><p>Lệch &gt;20% so với baseline.</p></div><div class="card top"><h4>Peak FTE</h4><p>Lệch &gt;20% so với baseline.</p></div><div class="card top cyan"><h4>Scope</h4><p>DL xác nhận thay đổi đáng kể.</p></div><div class="card top green"><h4>Customer Rank</h4><p>Account Value Tier thay đổi.</p></div><div class="card top yellow"><h4>Contract</h4><p>Chuyển Forecast sang Actual.</p></div><div class="card top red"><h4>Periodic</h4><p>Đủ sáu tháng từ lần gần nhất.</p></div><div class="card top"><h4>Manual</h4><p>DL/BOD yêu cầu kèm lý do.</p></div></div>
+        <div class="grid g4"><div class="card top"><h4>Linked Deals</h4><p>Thêm/xóa Deal hoặc đổi Eligible/Excluded làm dữ liệu Project thay đổi.</p></div><div class="card top"><h4>TCV</h4><p>Tổng Eligible Deal TCV lệch &gt;20% so với baseline.</p></div><div class="card top"><h4>Peak FTE</h4><p>Project Peak FTE theo timeline lệch &gt;20%.</p></div><div class="card top cyan"><h4>Scope</h4><p>DL xác nhận thay đổi đáng kể.</p></div><div class="card top green"><h4>Customer Rank</h4><p>Account Value Tier thay đổi.</p></div><div class="card top yellow"><h4>Contract</h4><p>Chuyển Forecast sang Actual.</p></div><div class="card top red"><h4>Periodic</h4><p>Đủ sáu tháng từ lần gần nhất.</p></div><div class="card top"><h4>Manual</h4><p>DL/BOD yêu cầu kèm lý do.</p></div></div>
         <div class="grid g3" style="margin-top:18px"><div class="card"><h3>1 · Trigger</h3><p>Tạo Ranking Version mới, lưu reason, baseline và thời gian.</p></div><div class="card"><h3>2 · Pending</h3><p>Project tiếp tục chạy; hiển thị Last Effective Rank.</p></div><div class="card"><h3>3 · Complete</h3><p>C dừng tại DL; A/B qua BOD; sync DES sau khi Effective.</p></div></div>
         <div class="callout success"><p><strong>PQA confirmed:</strong> Re-ranking Pending chỉ là thông tin; không block Project, DO, invoice, delivery hoặc resource operation.</p></div>
       </section>
@@ -179,7 +181,7 @@
       <section id="history" class="section">
         <div class="section-head"><div class="section-title-wrap"><div class="kicker">09 · Status & audit</div><h2>Lifecycle và dữ liệu lịch sử</h2></div></div>
         <div class="table-wrap"><table><thead><tr><th>Trạng thái</th><th>Ý nghĩa</th><th>Áp dụng</th></tr></thead><tbody><tr><td><span class="status">Provisional</span></td><td>Hệ thống vừa tạo Suggested Rank.</td><td>Mọi Rank</td></tr><tr><td><span class="status">DL Review</span></td><td>DL đang rà soát hoặc hồ sơ bị trả lại.</td><td>Mọi Rank</td></tr><tr><td><span class="status pending">Pending BOD Approval</span></td><td>DL đã confirm, chờ BOD.</td><td>Rank A/B</td></tr><tr><td><span class="status done">Effective</span></td><td>Rank hiện hành chính thức.</td><td>Current Rank</td></tr><tr><td><span class="status pending">Re-ranking Pending</span></td><td>Đang xử lý phiên bản thay thế, không block.</td><td>Active Project</td></tr><tr><td><span class="status">Superseded</span></td><td>Phiên bản cũ đã được thay thế.</td><td>History</td></tr></tbody></table></div>
-        <div class="grid g2" style="margin-top:18px"><div class="card"><h3>Mỗi version lưu</h3><p>Input snapshot, điểm từng tiêu chí, Group Score, Total Score, Calculated Rank, DL Confirmed Rank, Final Rank.</p></div><div class="card"><h3>Audit metadata</h3><p>Special Case, Override, trigger, reason, người thao tác, approver, comment, thời gian và trạng thái sync.</p></div></div>
+        <div class="grid g2" style="margin-top:18px"><div class="card"><h3>Mỗi version lưu</h3><p>Linked Deal IDs, Eligible/Excluded reason, giá trị từng Deal, aggregation result, điểm từng tiêu chí, Total Score, Calculated, DL Confirmed và Final Rank.</p></div><div class="card"><h3>Audit metadata</h3><p>Thay đổi tập Deal, Special Case, Override, trigger, reason, người thao tác, approver, comment, thời gian và trạng thái sync.</p></div></div>
       </section>
 
       <section id="des" class="section">
@@ -190,14 +192,14 @@
       <section id="uiux" class="section">
         <div class="section-head"><div class="section-title-wrap"><div class="kicker">11 · UI/UX proposal</div><h2>Project Ranking sẽ xuất hiện thế nào trên SaleHub CRM?</h2><p class="lead">Phương án ưu tiên tái sử dụng cấu trúc Detail, tab underline, dashboard card, scoring table và status badge đang có trong CRM để người dùng không phải học một giao diện hoàn toàn mới.</p></div><span class="section-badge">CONCEPT PREVIEW</span></div>
         <div class="ux-placement">
-          <div class="card top"><span class="ux-step">01</span><h3>Deal Detail · Left panel</h3><p>Giữ nguyên hồ sơ Deal và dữ liệu thương mại hiện có. Reference Rank được tạo từ Deal/PSR/Company nhưng không biến thành field nhập tay ở cột trái.</p></div>
-          <div class="card top cyan"><span class="ux-step">02</span><h3>Center · Project Ranking tab</h3><p>Không gian thao tác chính: xem snapshot nguồn, breakdown bốn nhóm, DL review/confirm và BOD approve/override ngay trong Detail.</p></div>
-          <div class="card top green"><span class="ux-step">03</span><h3>Right panel · Context checklist</h3><p>Giữ Company, Contacts và bổ sung checklist trạng thái dữ liệu/approval để người review biết hồ sơ còn thiếu bước nào.</p></div>
+          <div class="card top"><span class="ux-step">01</span><h3>Deal Detail · Reference only</h3><p>Mỗi Deal giữ Reference Rank, dữ liệu forecast và Project liên kết. Không đặt DL/BOD workflow ở cấp Deal.</p></div>
+          <div class="card top cyan"><span class="ux-step">02</span><h3>Project/DO Detail · Ranking tab</h3><p>Workspace chính hiển thị Linked Deals, aggregation, breakdown bốn nhóm, DL Confirm và BOD Approval/Override.</p></div>
+          <div class="card top green"><span class="ux-step">03</span><h3>Right panel · Project context</h3><p>Primary Company, Linked Deals summary và checklist dữ liệu/approval giúp reviewer thấy hồ sơ Project còn thiếu gì.</p></div>
         </div>
         <div class="callout warning"><p><strong>Nguyên tắc UX:</strong> Rank không được thiết kế như một field nhập tay. Màn hình phải luôn phân biệt Calculated Rank, DL Confirmed Rank, Final Rank và Current Effective Rank.</p></div>
         <div class="ux-frame" style="margin-top:20px">
-          <div class="ux-frame-head"><strong>CRM-style UI mockup · Merge trực tiếp vào Deal Detail 3 cột</strong><a href="pages/crm-project-ranking-mockup.html" target="_blank" rel="noopener">Mở toàn màn hình ↗</a></div>
-          <iframe src="pages/crm-project-ranking-mockup.html" title="SaleHub CRM Project Ranking UI/UX Preview" loading="lazy"></iframe>
+          <div class="ux-frame-head"><strong>CRM-style UI mockup · Project/Delivery Order Detail với nhiều Linked Deals</strong><a href="crm-project-ranking-mockup.html" target="_blank" rel="noopener">Mở toàn màn hình ↗</a></div>
+          <iframe src="crm-project-ranking-mockup.html" title="SaleHub CRM Project Ranking UI/UX Preview" loading="lazy"></iframe>
         </div>
         <p class="ux-note">Đây là concept để xác nhận placement, hierarchy và interaction với Sale/PQA/Delivery; chưa phải UI baseline cuối cho development.</p>
       </section>
